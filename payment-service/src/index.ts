@@ -1,17 +1,17 @@
 import express from "express";
 import { connectDB } from "./config/db";
-import orderRoutes from "./routes/order.routes";
+import paymentRoutes from "./routes/payment.routes";
 
 const app = express();
 app.use(express.json());
 
-app.use("/orders", orderRoutes);
+app.use("/payments", paymentRoutes);
 
 const start = async () => {
   await connectDB();
 
   app.listen(3001, () =>
-    console.log("Order Service running")
+    console.log("Payment Service running")
   );
 };
 
