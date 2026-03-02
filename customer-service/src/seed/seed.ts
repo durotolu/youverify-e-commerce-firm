@@ -1,6 +1,5 @@
 import Customer from "../models/customer.model";
 
-
 export const seedCustomer = async () => {
   const exists = await Customer.findOne();
 

@@ -8,5 +8,7 @@ export const seedProducts = async () => {
       { name: "Laptop", price: 1000 },
       { name: "Phone", price: 500 },
     ]);
+
+    console.log("Products seeded");
   }
 };
