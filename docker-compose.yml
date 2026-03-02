@@ -1,0 +1,83 @@
+# services:
+
+#   rabbitmq:
+#     image: rabbitmq:3-management
+#     ports:
+#       - "5672:5672"
+#       - "15672:15672"
+
+#   mongo:
+#     image: mongo
+#     ports:
+#       - "27017:27017"
+
+#   customer-service:
+#     build: ./customer-service
+#     ports:
+#       - "3001:3001"
+#     depends_on:
+#       - mongo
+
+#   product-service:
+#     build: ./product-service
+#     ports:
+#       - "3002:3002"
+#     depends_on:
+#       - mongo
+
+#   order-service:
+#     build: ./order-service
+#     ports:
+#       - "3003:3003"
+#     depends_on:
+#       - mongo
+#       - rabbitmq
+
+#   payment-service:
+#     build: ./payment-service
+#     ports:
+#       - "3004:3004"
+#     depends_on:
+#       - rabbitmq
+
+#   transaction-worker:
+#     build: ./transaction-worker
+#     depends_on:
+#       - rabbitmq
+#       - mongo
+
+
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  customer-service:
+    build: ./customer-service
+    ports:
+      - "3001:3001"
+
+  product-service:
+    build: ./product-service
+    ports:
+      - "3002:3002"
+
+  order-service:
+    build: ./order-service
+    ports:
+      - "3003:3003"
+
+  payment-service:
+    build: ./payment-service
+    ports:
+      - "3004:3004"
+
+  transaction-worker:
+    build: ./transaction-worker
