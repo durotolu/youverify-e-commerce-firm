@@ -1,4 +1,3 @@
-// seed/customer.seed.ts
 import Customer from "../models/customer.model";
 
 
