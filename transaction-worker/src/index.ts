@@ -2,16 +2,27 @@ import mongoose from "mongoose";
 import amqp from "amqplib";
 import Transaction from "./models/transaction.model";
 
-async function start() {
-  await mongoose.connect(
-    `mongodb://mongo:27017/transactiondb`
-  );
+async function connectRabbitMQ(retries = 20) {
+  while (retries) {
+    try {
+      const conn = await amqp.connect("amqp://rabbitmq");
+      console.log("RabbitMQ Connected");
+      return conn;
+    } catch (err) {
+      console.log("RabbitMQ not ready, retrying in 5s...");
+      retries--;
+      await new Promise((res) => setTimeout(res, 5000));
+    }
+  }
 
+  throw new Error("RabbitMQ connection failed");
+}
+
+async function start() {
+  await mongoose.connect("mongodb://mongo:27017/transactiondb");
   console.log("Transaction DB Connected");
 
-  const conn = await amqp.connect("amqp://rabbitmq");
-  console.log("RabbitMQ Connected");
-
+  const conn = await connectRabbitMQ();
   const channel = await conn.createChannel();
 
   const queue = "transactions";
@@ -32,4 +43,4 @@ async function start() {
   });
 }
 
-start();
+start().catch(console.error);
