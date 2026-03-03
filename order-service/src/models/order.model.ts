@@ -8,7 +8,7 @@ const schema = new mongoose.Schema({
   customerId: String,
   productId: String,
   amount: Number,
-  orderStatus: {
+  status: {
     type: String,
     default: OrderStatus.PENDING,
   },

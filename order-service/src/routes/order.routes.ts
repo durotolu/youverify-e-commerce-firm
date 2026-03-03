@@ -13,13 +13,17 @@ router.post("/", async (req, res) => {
 
   const amount = productRes.data.price;
 
+  if (!customerId || !productId || !amount) {
+    return res.status(400).json({ error: "Invalid order data" });
+  }
+
   const order = await Order.create({
     customerId,
     productId,
     amount
   });
 
-  await axios.post(
+  const paymentResponse = await axios.post(
     "http://payment-service:3004/pay",
     {
       customerId,
@@ -33,7 +37,8 @@ router.post("/", async (req, res) => {
     customerId,
     orderId: order._id,
     productId,
-    orderStatus: order.orderStatus,
+    orderStatus: order.status,
+    paymentStatus: paymentResponse.data.status
   });
 });
 

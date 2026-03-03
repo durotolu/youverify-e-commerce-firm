@@ -1,6 +1,6 @@
 import amqp from "amqplib";
 
-export const publishTransaction = async (data: any) => {
+export const publishTransaction = async (data: { customerId: string; orderId: string; amount: string; productId: string; }) => {
   const conn = await amqp.connect("amqp://rabbitmq");
   const channel = await conn.createChannel();
 
