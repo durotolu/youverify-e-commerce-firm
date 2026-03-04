@@ -3,7 +3,7 @@ import { publishTransaction } from "../messaging/publisher";
 
 const router = Router();
 
-router.post("/pay", async (req, res) => {
+router.post("/", async (req, res) => {
   const { customerId, orderId, amount, productId } = req.body;
   await publishTransaction({
     customerId,
@@ -12,7 +12,7 @@ router.post("/pay", async (req, res) => {
     productId
   });
 
-  res.json({ status: "Payment Processing" });
+  res.json({ status: "Payment Processing (success)" });
 });
 
 export default router;

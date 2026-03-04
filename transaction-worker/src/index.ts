@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import amqp from "amqplib";
 import Transaction from "./models/transaction.model";
 
-async function connectRabbitMQ(retries = 20) {
+async function connectRabbitMQ(retries = 10) {
   while (retries) {
     try {
       const conn = await amqp.connect("amqp://rabbitmq");
