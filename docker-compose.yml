@@ -14,21 +14,30 @@ services:
     build: ./customer-service
     ports:
       - "3001:3001"
+    depends_on:
+      - mongo
 
   product-service:
     build: ./product-service
     ports:
       - "3002:3002"
+    depends_on:
+      - mongo
 
   order-service:
     build: ./order-service
     ports:
       - "3003:3003"
+    depends_on:
+      - mongo
+      - rabbitmq
 
   payment-service:
     build: ./payment-service
     ports:
       - "3004:3004"
+    depends_on:
+      - rabbitmq
 
   transaction-worker:
     build: ./transaction-worker
