@@ -84,8 +84,26 @@ npm install
 - RabbitMQ default: `amqp://localhost`  
 
 ---
+## Environment Variables
+
+Each service uses the same root .env file. see `env.example`:
 
 ## Running the Services
+
+Start all services once with Docker:
+
+```bash
+docker compose up --build
+# or in detached mode:
+# docker compose up --build -d
+```
+
+Stop the stack:
+
+```bash
+docker compose down
+```
+
 
 Start each service individually:
 
@@ -105,19 +123,6 @@ npm run start
 cd transaction-worker
 npm run start
 ```
-
-## Environment Variables
-
-Each service uses a .env file in its root. Example for Customer Service:
-
-```bash
-PORT=3001
-MONGO_URI=mongodb://localhost:27017/customerdb
-NODE_ENV=development
-```
-
-
-Other services have similar `.env` configurations, adjusting `PORT` and `MONGO_URI` accordingly.
 
 ---
 
