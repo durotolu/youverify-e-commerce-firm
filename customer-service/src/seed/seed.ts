@@ -1,6 +1,9 @@
 import Customer from "../models/customer.model";
 
-export const seedCustomer = async () => {
+/**
+ * Seeds the database with a default customer if none exist.
+ */
+export const seedCustomer = async (): Promise<void> => {
   const exists = await Customer.findOne();
 
   if (!exists) {

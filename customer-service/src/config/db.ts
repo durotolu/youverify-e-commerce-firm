@@ -1,12 +1,17 @@
 import mongoose from "mongoose";
 
-export const connectDB = async () => {
+/**
+ * Connects to the MongoDB database for the customer service.
+ * Exits the process if the connection fails.
+ */
+export const connectDB = async (): Promise<void> => {
   try {
-    await mongoose.connect(`mongodb://mongo:27017/customerdb`);
+    await mongoose.connect(
+      process.env.MONGO_URL || "mongodb://mongo:27017/customerdb"
+    );
     console.log("Customer DB Connected");
   } catch (error) {
     console.error("Customer DB Connection Error:", error);
-    process.exit(1);
+    throw error;
   }
-  console.log("Customer DB Connected");
 };

@@ -4,6 +4,10 @@ const mongoose = require('mongoose');
 
 const router = Router();
 
+/**
+ * GET /customers/:id
+ * Retrieves a customer by ID.
+ */
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
 

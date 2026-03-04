@@ -1,13 +1,22 @@
 import mongoose from "mongoose";
 
+/**
+ * Interface representing a customer document.
+ */
 export interface Customer {
   name: string;
   email: string;
 }
 
+/**
+ * Mongoose schema for the Customer model.
+ */
 const schema = new mongoose.Schema<Customer>({
-  name: String,
-  email: String,
+  name: { type: String, required: true },
+  email: { type: String, required: true },
 });
 
-export default mongoose.model("Customer", schema);
+/**
+ * Mongoose model for Customer collection.
+ */
+export default mongoose.model<Customer>("Customer", schema);
