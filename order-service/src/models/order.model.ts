@@ -5,9 +5,9 @@ export enum OrderStatus {
 }
 
 const schema = new mongoose.Schema({
-  customerId: String,
-  productId: String,
-  amount: Number,
+  customerId: { type: String, required: true },
+  productId: { type: String, required: true },
+  amount: { type: Number, required: true },
   status: {
     type: String,
     default: OrderStatus.PENDING,
