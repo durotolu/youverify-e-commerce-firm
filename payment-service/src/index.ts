@@ -10,7 +10,7 @@ app.use("/payments", paymentRoutes);
 const start = async () => {
   await connectDB();
 
-  app.listen(3001, () =>
+  app.listen(3004, () =>
     console.log("Payment Service running")
   );
 };

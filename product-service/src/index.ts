@@ -12,7 +12,7 @@ const start = async () => {
   await connectDB();
   await seedProducts()
 
-  app.listen(3001, () =>
+  app.listen(3002, () =>
     console.log("Product Service running")
   );
 };
