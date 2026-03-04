@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import amqp from "amqplib";
-import Transaction from "./models/transaction.model";
+import { handleTransaction } from "./worker/transactionHandler";
 
 async function connectRabbitMQ(retries = 10) {
   while (retries) {
@@ -14,7 +14,6 @@ async function connectRabbitMQ(retries = 10) {
       await new Promise((res) => setTimeout(res, 5000));
     }
   }
-
   throw new Error("RabbitMQ connection failed");
 }
 
@@ -33,11 +32,7 @@ async function start() {
   channel.consume(queue, async (msg) => {
     if (!msg) return;
 
-    const data = JSON.parse(msg.content.toString());
-
-    await Transaction.create(data);
-
-    console.log("Transaction saved");
+    await handleTransaction(msg.content);
 
     channel.ack(msg);
   });
