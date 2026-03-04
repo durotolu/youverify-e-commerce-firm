@@ -6,7 +6,7 @@ export const connectDB = async () => {
     console.log("Order DB Connected");
   } catch (error) {
     console.error("Order DB Connection Error:", error);
-    process.exit(1);
+    throw error;
   }
   console.log("Order DB Connected");
 };

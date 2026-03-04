@@ -6,7 +6,7 @@ export const connectDB = async () => {
     console.log("Payment DB Connected");
   } catch (error) {
     console.error("Payment DB Connection Error:", error);
-    process.exit(1);
+    throw error;
   }
   console.log("Payment DB Connected");
 };
