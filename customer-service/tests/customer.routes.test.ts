@@ -1,9 +1,9 @@
 import request from "supertest";
 import express from "express";
-import customerRoutes from "../routes/customer.routes";
+import customerRoutes from "../src/routes/customer.routes";
 import mongoose from "mongoose";
-import Customer from "../models/customer.model";
-import { setupTestDB, teardownTestDB, clearDatabase } from '../../tests/setup';
+import Customer from "../src/models/customer.model";
+import { setupTestDB, teardownTestDB, clearDatabase } from './setup';
 
 
 beforeAll(async () => {

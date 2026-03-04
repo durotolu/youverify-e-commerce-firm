@@ -1,4 +1,4 @@
-import { publishTransaction } from "../messaging/publisher";
+import { publishTransaction } from "../src/messaging/publisher";
 import amqp from "amqplib";
 
 // Mock amqplib

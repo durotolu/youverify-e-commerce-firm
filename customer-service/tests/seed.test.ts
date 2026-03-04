@@ -1,6 +1,6 @@
-import Customer from "../../src/models/customer.model";
-import { seedCustomer } from "../../src/seed/seed";
-import { setupTestDB, teardownTestDB, clearDatabase } from '../../tests/setup';
+import Customer from "../src/models/customer.model";
+import { seedCustomer } from "../src/seed/seed";
+import { setupTestDB, teardownTestDB, clearDatabase } from './setup';
 
 beforeAll(async () => {
   await setupTestDB();

@@ -1,4 +1,4 @@
-import Customer from "../../src/models/customer.model";
+import Customer from "../src/models/customer.model";
 
 describe("Customer Model", () => {
   it("should have required fields", () => {

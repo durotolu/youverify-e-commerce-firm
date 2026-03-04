@@ -2,9 +2,9 @@ import request from "supertest";
 import express from "express";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
-import Order from "../models/order.model";
-import orderRoutes from "../routes/order.routes";
-import { setupTestDB, teardownTestDB, clearDatabase } from '../../tests/setup';
+import Order from "../src/models/order.model";
+import orderRoutes from "../src/routes/order.routes";
+import { setupTestDB, teardownTestDB, clearDatabase } from './setup';
 
 const app = express();
 app.use(express.json());

@@ -1,4 +1,4 @@
-import Order, { OrderStatus } from "../models/order.model";
+import Order, { OrderStatus } from "../src/models/order.model";
 
 describe("Order Model", () => {
   it("should create an order with default status 'pending'", () => {

@@ -1,4 +1,4 @@
-import Product from "../../src/models/product.model";
+import Product from "../src/models/product.model";
 
 describe("Product Model", () => {
   it("should create a product with required fields", () => {

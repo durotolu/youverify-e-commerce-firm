@@ -1,9 +1,9 @@
 import request from "supertest";
 import express from "express";
 import mongoose from "mongoose";
-import Product from "../../src/models/product.model";
-import productRoutes from "../../src/routes/product.routes";
-import { setupTestDB, teardownTestDB, clearDatabase } from "../../tests/setup";
+import Product from "../src/models/product.model";
+import productRoutes from "../src/routes/product.routes";
+import { setupTestDB, teardownTestDB, clearDatabase } from "./setup";
 
 const app = express();
 app.use(express.json());

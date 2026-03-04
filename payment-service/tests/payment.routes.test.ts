@@ -1,7 +1,7 @@
 import request from "supertest";
 import express from "express";
-import paymentRoutes from "../routes/payment.routes";
-import * as publisher from "../messaging/publisher";
+import paymentRoutes from "../src/routes/payment.routes";
+import * as publisher from "../src/messaging/publisher";
 
 const app = express();
 app.use(express.json());
