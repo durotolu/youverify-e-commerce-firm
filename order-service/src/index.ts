@@ -11,7 +11,7 @@ if (process.env.NODE_ENV !== "test") {
   const start = async () => {
     await connectDB();
 
-    app.listen(3003, () =>
+    app.listen(process.env.PORT_ORDER || 3003, () =>
       console.log("Order Service running")
     );
   };

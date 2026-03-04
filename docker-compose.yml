@@ -1,46 +1,68 @@
 services:
   mongo:
-    image: mongo
+    image: mongo:8
+    container_name: ecommerce-mongo
+    restart: always
     ports:
       - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
 
   rabbitmq:
     image: rabbitmq:3-management
+    container_name: ecommerce-rabbitmq
+    restart: always
     ports:
       - "5672:5672"
       - "15672:15672"
 
   customer-service:
     build: ./customer-service
+    env_file:
+      - .env
     ports:
-      - "3001:3001"
+      - "${PORT_CUSTOMER}:3001"
     depends_on:
       - mongo
+      - rabbitmq
 
   product-service:
     build: ./product-service
+    env_file:
+      - .env
     ports:
-      - "3002:3002"
+      - "${PORT_PRODUCT}:3002"
     depends_on:
       - mongo
+      - rabbitmq
 
   order-service:
     build: ./order-service
+    env_file:
+      - .env
     ports:
-      - "3003:3003"
+      - "${PORT_ORDER}:3003"
     depends_on:
       - mongo
       - rabbitmq
 
   payment-service:
     build: ./payment-service
+    env_file:
+      - .env
     ports:
-      - "3004:3004"
+      - "${PORT_PAYMENT}:3004"
     depends_on:
+      - mongo
       - rabbitmq
 
   transaction-worker:
     build: ./transaction-worker
+    env_file:
+      - .env
     depends_on:
-      - rabbitmq
       - mongo
+      - rabbitmq
+
+volumes:
+  mongo_data:

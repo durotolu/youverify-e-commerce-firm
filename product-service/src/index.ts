@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== "test") {
     await connectDB();
     await seedProducts();
 
-    app.listen(3002, () =>
+    app.listen(process.env.PORT_PRODUCT || 3002, () =>
       console.log("Product Service running")
     );
   };

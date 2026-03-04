@@ -18,7 +18,12 @@ async function connectRabbitMQ(retries = 10) {
 }
 
 async function start() {
-  await mongoose.connect("mongodb://mongo:27017/transactiondb");
+  const mongoURI =
+    process.env.MONGO_URI ||
+    process.env.MONGO_URI_TRANSACTION_DOCKER ||
+    "mongodb://mongo:27017/transactiondb";
+
+  await mongoose.connect(mongoURI);
   console.log("Transaction DB Connected");
 
   const conn = await connectRabbitMQ();

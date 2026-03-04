@@ -19,7 +19,7 @@ if (process.env.NODE_ENV !== "test") {
     await connectDB();
     await seedCustomer();
 
-    app.listen(process.env.PORT || 3001, () =>
+    app.listen(process.env.PORT_CUSTOMER || 3001, () =>
       console.log("Customer Service running")
     );
   };
